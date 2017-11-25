@@ -12,6 +12,10 @@ User::User(std::string name) : name(name), borrowedBooks(10, ""), numOfBooks(0)
 	this->globalUniqueUserId = generateId();
 	usedIds[globalUniqueUserId] = this;
 }
+User::~User()
+{
+	usedIds.erase(this->globalUniqueUserId);
+}
 std::string User::generateId()
 {
 	srand(time(0));
@@ -26,7 +30,7 @@ std::string User::generateId()
 	}while(!usedIds.count(s));
 	return s;
 }
-bool User::borrowBook(std::string bookName)
+bool User::borrowBook(Book* book)
 {
 	if(numOfBooks >= 10)
 	{
@@ -35,23 +39,23 @@ bool User::borrowBook(std::string bookName)
 	int i;
 	for(i = 0; i < 10; i++)
 	{
-		if(borrowedBooks[i] == "")
+		if(borrowedBooks[i] == nullptr)
 		{
 			break;
 		}
 	}
-	borrowedBooks[i] = bookName;
+	borrowedBooks[i] = book;
 	numOfBooks++;
 	return true;
 }
-bool User::returnBook(std::string bookName)
+bool User::returnBook(Book* book)
 {
 	int i;
 	for(i = 0; i < 10; i++)
 	{
-		if(borrowedBooks[i] == bookName)
+		if(borrowedBooks[i] == book)
 		{
-			borrowedBooks[i] = "";
+			borrowedBooks[i] = nullptr;
 			numOfBooks--;
 			return true;
 		}
