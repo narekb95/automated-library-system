@@ -1,24 +1,30 @@
 #ifndef BOOK_H
 #define BOOK_H
 #include<string>
-#include"user.h"
 #include<vector>
+#include<map>
+class User;
 class Book
 {
 public:
-	Book(std::string title, std::string author, std::string ISBN);
-	void request();
+	enum class BookStatus { available, borrowed, inRequest};
+	enum class BookException { notAvailable, notBorrowed };
+	Book(std::string title, std::string author, std::string ISBN, BookStatus status);
+	void request(std::string user);
 	std::string getTitle();
 	bool isAvailable();
-	bool borrow(User* user);
-	void addUser(User* user);
+	void borrow(User* user);
+	void returnBook();
+	bool operator<(const Book& rhs) const;
+	std::string toString();
+
 private:
 	std::string title;
 	std::string author;
 	std::string ISBN;
-	int totalCopies;
-	int borrowedCopies;
+	User* user;
+	BookStatus status;
 	int numberOfRequests;
-	std::vector<User*> users;
-}//you cam make a constructor with a call-function to call when requests reach a point to buy
+	std::map<std::string, bool> requestMaker;
+};
 #endif

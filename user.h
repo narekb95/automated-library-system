@@ -9,19 +9,16 @@ class User
 public:
 	User(std::string name);
 	~User();
+	enum class userException {usedNameException, reachedMaxNumberOfBooks, noSuchBookInRepo};
 	bool operator== (const User& rUsr);
 	bool operator< (const User& rUsr);
 	std::string getName();
-	std::string searchName();
 	bool borrowBook(std::string bookTitle);
-	bool returnBook(std::string bookTitle);
-	bool borrowBook(Book* book);
+	void returnBook(std::string bookTitle);
+	void borrowBook(Book* book);
 	bool returnBook(Book* book);
 private:
 	std::string name;
-	std::string globalUniqueUserId;
-	static std::map<std::string, const User*> usedIds;
-	std::string generateId();
 	std::vector<Book*> borrowedBooks;
 	int numOfBooks;
 };

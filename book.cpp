@@ -1,10 +1,11 @@
 #include "book.h"
 
-Book::Book(std::string title, std::string author, std::string ISBN) : name(name), author(author), ISBN(ISBN)
+Book::Book(std::string title, std::string author, std::string ISBN, BookStatus status) : title(title), author(author), ISBN(ISBN), status(status)
 {
 }
 
-void Book::request()
+//todo: add user to requesting list and not accept two from the same user
+void Book::request(std::string user)
 {
 	this->numberOfRequests++;
 }
@@ -16,18 +17,35 @@ std::string Book::getTitle()
 
 bool Book::isAvailable()
 {
-	return  borrowedCopies < totalCopies;
+	return this->status == BookStatus::available;
 }
-bool Book::borrow(User* user)
+
+void Book::borrow(User* user)
 {
-	if(isAvailable())
+	if(!isAvailable())
 	{
-		borrowedCopies++;	
-		addUser(user);
-		return true;
+		throw BookException::notAvailable;
 	}
-	return false;
+	this->user = user;
+	this->status = BookStatus::borrowed;
+	
 }
-void Book::addUser(User* user)
+
+void Book::returnBook()
 {
+	if(!(this->status == BookStatus::borrowed))
+	{
+		throw BookException::notBorrowed;
+	}
+	this->status = BookStatus::available;
+}
+
+bool Book::operator<(const Book& rhs) const 
+{
+	return this->title < rhs.title;
+}
+
+std::string Book::toString()
+{
+	return this->title + " " + this->author + " " + this->ISBN;
 }
