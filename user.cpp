@@ -3,6 +3,11 @@ bool User::operator< (const User& rUsr)
 {
 	return this->name <  rUsr.name;
 }
+
+bool User::operator== (const User& rUsr)
+{
+	return this->name == rUsr.name;
+}
 User::User(std::string name) : name(name), borrowedBooks(10, nullptr), numOfBooks(0)
 {
 }

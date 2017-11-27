@@ -16,6 +16,7 @@ public:
 	void borrow(User* user);
 	int returnBook();
 	bool operator<(const Book& rhs) const;
+	bool operator ==(const Book& rhs) const;
 	std::string toString();
 
 private:
@@ -26,6 +27,6 @@ private:
 	User* user;
 	BookStatus status;
 	int numberOfRequests;
-	std::map<std::string, bool> requestMaker;
+	std::map<User*, bool> requestMaker;
 };
 #endif

@@ -43,6 +43,10 @@ bool Book::operator<(const Book& rhs) const
 	return this->title < rhs.title;
 }
 
+bool Book::operator==(const Book& rhs) const
+{
+	return this->title == rhs.title;
+}
 std::string Book::toString()
 {
 	return this->title + " " + this->author + " " + this->ISBN;
