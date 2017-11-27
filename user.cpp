@@ -13,7 +13,7 @@ void User::borrowBook(Book* book)
 {
 	if(numOfBooks >= 10)
 	{
-		throw userException::reachedMaxNumberOfBooks;
+		throw UserException::reachedMaxNumberOfBooks;
 	}
 	int i;
 	for(i = 0; i < 10; i++)
@@ -26,7 +26,7 @@ void User::borrowBook(Book* book)
 	borrowedBooks[i] = book;
 	numOfBooks++;
 }
-bool User::returnBook(Book* book)
+void User::returnBook(Book* book)
 {
 	int i;
 	for(i = 0; i < 10; i++)
@@ -35,7 +35,7 @@ bool User::returnBook(Book* book)
 		{
 			borrowedBooks[i] = nullptr;
 			numOfBooks--;
+			return;
 		}
 	}
-	throw userException::noSuchBookInRepo;
 }

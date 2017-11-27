@@ -28,16 +28,14 @@ void Book::borrow(User* user)
 	}
 	this->user = user;
 	this->status = BookStatus::borrowed;
+	numOfUses++;
 	
 }
 
-void Book::returnBook()
+int Book::returnBook()
 {
-	if(!(this->status == BookStatus::borrowed))
-	{
-		throw BookException::notBorrowed;
-	}
 	this->status = BookStatus::available;
+	return numOfUses;
 }
 
 bool Book::operator<(const Book& rhs) const 
