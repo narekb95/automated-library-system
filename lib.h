@@ -12,8 +12,7 @@ public:
 
 	Book& findBookPerTitle(const std::string& title);
 	Book& findBookPerISBN(const std::string& ISBN);
-	Book& buyBook(Book book);
-	Book& buyBook(std::string title, std::string authore, std::string ISBN);
+	Book& buyBook(std::string title, std::string author, std::string ISBN);
 	void borrowBook(std::string userName, std::string bookTitle);
 	void borrowBook(User& user, Book& book);
 	void returnBook(std::string userName, std::string bookTitle);

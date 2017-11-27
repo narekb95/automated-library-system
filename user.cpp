@@ -11,9 +11,6 @@ bool User::operator== (const User& rUsr)
 User::User(std::string name) : name(name), borrowedBooks(10, nullptr), numOfBooks(0)
 {
 }
-User::~User()
-{
-}
 void User::borrowBook(Book* book)
 {
 	if(numOfBooks >= 10)
@@ -43,4 +40,16 @@ void User::returnBook(Book* book)
 			return;
 		}
 	}
+}
+
+std::string User::toString()
+{
+	std::string s = name + ":\n";
+	for(int i = 0; i < 10; i++){
+		if(borrowedBooks[i] != nullptr)
+		{
+			s+=borrowedBooks[i]->toString() + "\n";
+		}
+	}
+	return s;
 }

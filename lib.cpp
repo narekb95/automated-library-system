@@ -95,3 +95,13 @@ void LibOrganizer::returnBook(User& user, Book& book)
 	user.returnBook(&book);
 	book.returnBook();
 }
+
+Book& LibOrganizer::buyBook(std::string title, std::string author,std::string ISBN)
+{
+	//check for status and existance
+	Book book(title, author, ISBN, Book::BookStatus::available);
+	booksISBNIndex[ISBN] = book;
+	booksTitleIndex[title] = booksISBNIndex.find(ISBN);
+	return booksISBNIndex[ISBN];
+	
+}

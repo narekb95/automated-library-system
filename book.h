@@ -10,6 +10,7 @@ public:
 	enum class BookException { notAvailable};
 	enum class BookStatus { available, borrowed, inRequest};
 	Book(std::string title, std::string author, std::string ISBN, BookStatus status);
+	Book() = default;
 	void request(std::string user);
 	std::string getTitle();
 	bool isAvailable();
