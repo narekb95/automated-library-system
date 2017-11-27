@@ -1,0 +1,8 @@
+Todo:
+
+1. count borrowing and remove book after enough times.
+2. when a book bought check if it was requested or bought.
+3. check what should happens if requested n times(and if not bought happens every time untill bought or everz n-th time?.
+4. error handling (adding used books people or borrowing non existing books.
+
+
