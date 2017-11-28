@@ -4,7 +4,7 @@ Main classes are:
 <ul>
 <li href="#libclass">LibOrganizer</li>
 <li href="#userclass">User</li>
-<li href="#bookclass">Book</li>
+<li><a href="#bookclass">Book</a></li>
 </ul>
 <br>
 <div>
@@ -62,6 +62,7 @@ It has also the following functions:
 <br>
 <div>
 <h2 id="userclass">User:</h2>
+   User Class
 </div>
 <br/>
 <div>
