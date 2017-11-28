@@ -23,7 +23,7 @@ Is the main part of the library, organizes people and books in an efficient way 
   <h3>LibOrganizer(std::function<void(Book book)> buyBookFunction)</h3>
     <p>Paramter is a call-back function, to be called after every request after 50th request.</p>
   <h3>void borrowBook(std::string userName, std::string BookTitle)</h3>
-    <p>The function called when a borrow action happens.
+    <p>The function called when a borrow action happens.<br/>
     Exceptions:
     <ol>
       <li></li>
@@ -34,19 +34,4 @@ Is the main part of the library, organizes people and books in an efficient way 
 </div>
 <div>
 <h2>User:</h2>
-Is the main part of the library, organizes people and books in an efficient way has the following functions:
-<ul>
-<li>LibOrganizer</li>
-<li>User</li>
-<li>Book</li>
-</ul>
-</div>
-<div>
 <h2>Book:</h2>
-Is the main part of the library, organizes people and books in an efficient way has the following functions:
-<ul>
-<li>LibOrganizer</li>
-<li>User</li>
-<li>Book</li>
-</ul>
-</div>
