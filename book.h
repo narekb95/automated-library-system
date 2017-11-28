@@ -23,7 +23,7 @@ public:
 	User* getUser();
 	std::string getTitle() const;
 	std::string getISBN() const;
-    std::string getAuthor() const;
+    	std::string getAuthor() const;
 	BookStatus getStatus() const;
     
     bool operator<(const Book& rhs) const;
