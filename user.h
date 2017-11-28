@@ -7,7 +7,7 @@ const int MAX_BOOKS = 10;
 class User
 {
 public:
-	enum class UserException {reachedMaxNumberOfBooks, noSuchBook};
+	enum class UserException {reachedMaxNumberOfBooks, noSuchBook, bookAlreadyBorrowed};
 	User(std::string name);
 	User() = default;
 	bool operator== (const User& rUsr);

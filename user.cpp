@@ -1,4 +1,5 @@
 #include "user.h"
+#include<iostream>
 bool User::operator< (const User& rUsr)
 {
 	return this->name < rUsr.name;
@@ -23,18 +24,19 @@ void User::borrowBook(Book& book)
 		throw UserException::reachedMaxNumberOfBooks;
 	}
 	int i;
+    int freeIndex = -1;
 	for(i = 0; i < 10; i++)
 	{
 		if(borrowedBooks[i] == nullptr)
 		{
-			break;
+            freeIndex = i;
 		}
+        if(borrowedBooks[i] == &book)
+        {
+            throw UserException::bookAlreadyBorrowed;
+        }
 	}
-	if(i == 10)
-	{
-		throw UserException::noSuchBook;
-	}
-	borrowedBooks[i] = &book;
+	borrowedBooks[freeIndex] = &book;
 	numOfBooks++;
 	return;
 }
@@ -45,11 +47,16 @@ void User::returnBook(Book& book)
 	{
 		if(borrowedBooks[i] == &book)
 		{
-			borrowedBooks[i] = nullptr;
-			numOfBooks--;
-			return;
+            break;
 		}
 	}
+    if(i == 10)
+    {
+        throw UserException::noSuchBook;
+    }
+    borrowedBooks[i] = nullptr;
+    numOfBooks--;
+    return;
 }
 
 std::string User::toString()

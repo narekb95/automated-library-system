@@ -41,7 +41,7 @@ Book& LibOrganizer::findBookPerTitle(const std::string& title)
 	if(!booksTitleIndex.count(title)){
 		throw LibExceptions::bookNotFound;
 	}
-	return booksTitleIndex[title]->second;
+    return std::ref(booksTitleIndex[title]->second);
 }
 
 Book& LibOrganizer::findBookPerISBN(const std::string& ISBN)
