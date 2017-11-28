@@ -33,7 +33,7 @@ User& LibOrganizer::addUser(std::string name)
 	}
 	User user(name);
 	userNameIndex[name] = user;
-	return userNameIndex[name];
+	return std::ref(userNameIndex[name]);
 }
 
 Book& LibOrganizer::findBookPerTitle(const std::string& title)
@@ -55,30 +55,31 @@ void LibOrganizer::borrowBook(std::string userName, std::string bookTitle)
 {
 	User& user = userNameIndex[userName];
 	Book& book = findBookPerTitle(bookTitle);
-	borrowBook(user, book);
+	borrowBook(std::ref(user), std::ref(book));
 }
 
 void LibOrganizer::borrowBook(User& user, Book& book)
 {
 	try
 	{
-		user.borrowBook(&book);
+		user.borrowBook(std::ref(book));
 		book.borrow(&user);
 	}
 	catch (Book::BookException bookExp)
 	{
-		if(bookExp == Book::BookException::notAvailable)
+		try
 		{
-			user.returnBook(&book);
+			user.returnBook(std::ref(book));
+		}
+		catch(User::UserException e)
+		{
+			//can be book not borrowed so we ignore it
 		}
 		throw bookExp;
 	}
 	catch (User::UserException userExp)
 	{
-		if(userExp == User::UserException::reachedMaxNumberOfBooks)
-		{
-			book.returnBook();
-		}
+		book.returnBook();
 		throw userExp;
 	}
 }
@@ -87,21 +88,61 @@ void LibOrganizer::returnBook(std::string userName, std::string bookTitle)
 {
 	User& user = userNameIndex[userName];
 	Book& book = findBookPerTitle(bookTitle);
-	returnBook(user, book);
+	returnBook(std::ref(user), std::ref(book));
 }
 
 void LibOrganizer::returnBook(User& user, Book& book)
 {
-	user.returnBook(&book);
+	user.returnBook(std::ref(book));
 	book.returnBook();
 }
 
 Book& LibOrganizer::buyBook(std::string title, std::string author,std::string ISBN)
 {
 	//check for status and existance
-	Book book(title, author, ISBN, Book::BookStatus::available);
-	booksISBNIndex[ISBN] = book;
+	Book newBook(title, author, ISBN, Book::BookStatus::available);
+	if(booksISBNIndex.count(ISBN))
+	{
+		Book& bookWithSameISBN = booksISBNIndex[ISBN];
+		if(bookWithSameISBN == newBook 
+			&& bookWithSameISBN.getStatus() == Book::BookStatus::inRequest)
+		{
+			bookWithSameISBN.buyFromWaitingList();
+			return bookWithSameISBN;
+		}
+		throw LibExceptions::bookISBNAlreadyExists;
+	}
+	if(booksTitleIndex.count(title))
+		throw LibExceptions::bookTitleAlreadyExists;
+	booksISBNIndex[ISBN] = newBook;
 	booksTitleIndex[title] = booksISBNIndex.find(ISBN);
 	return booksISBNIndex[ISBN];
-	
+}
+
+void LibOrganizer::requestBook(std::string bookTitle, std::string author, std::string ISBN)
+{
+	Book newBook(bookTitle, author, ISBN, Book::BookStatus::inRequest);
+	if(booksISBNIndex.count(ISBN))
+	{
+		Book& bookWithSameISBN = booksISBNIndex[ISBN];
+		if(bookWithSameISBN == newBook)
+		{
+			if(bookWithSameISBN.getStatus() == Book::BookStatus::inRequest)
+			{
+				if(bookWithSameISBN.request()>=MAX_REQ)
+				{
+					buyBookFunction(bookWithSameISBN);
+					return;
+				}
+			}
+			throw LibExceptions::bookAlreadyBought;
+		}
+		throw LibExceptions::bookISBNAlreadyExists;
+		
+	}
+	if(booksTitleIndex.count(bookTitle))
+	{
+		throw LibExceptions::bookTitleAlreadyExists;
+	}
+	addBook(bookTitle, author, ISBN, Book::BookStatus::inRequest);
 }

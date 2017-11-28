@@ -1,19 +1,23 @@
 #include "user.h"
 bool User::operator< (const User& rUsr)
 {
-	return this->name <  rUsr.name;
+	return this->name < rUsr.name;
 }
 
 bool User::operator== (const User& rUsr)
 {
 	return this->name == rUsr.name;
 }
-User::User(std::string name) : name(name), borrowedBooks(10, nullptr), numOfBooks(0)
+
+User::User(std::string name) : name(name)
 {
+	for(int i = 0; i < MAX_BOOKS; i++)
+		borrowedBooks[i] = nullptr;
 }
-void User::borrowBook(Book* book)
+
+void User::borrowBook(Book& book)
 {
-	if(numOfBooks >= 10)
+	if(numOfBooks >= MAX_BOOKS)
 	{
 		throw UserException::reachedMaxNumberOfBooks;
 	}
@@ -25,15 +29,20 @@ void User::borrowBook(Book* book)
 			break;
 		}
 	}
-	borrowedBooks[i] = book;
+	if(i == 10)
+	{
+		throw UserException::noSuchBook;
+	}
+	borrowedBooks[i] = &book;
 	numOfBooks++;
+	return;
 }
-void User::returnBook(Book* book)
+void User::returnBook(Book& book)
 {
 	int i;
 	for(i = 0; i < 10; i++)
 	{
-		if(borrowedBooks[i] == book)
+		if(borrowedBooks[i] == &book)
 		{
 			borrowedBooks[i] = nullptr;
 			numOfBooks--;

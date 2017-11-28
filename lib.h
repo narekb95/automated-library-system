@@ -4,10 +4,11 @@
 #include "book.h"
 #include<functional>
 #include<map>
+const int MAX_REQ = 50;
 class LibOrganizer
 {
 public:
-	enum class LibExceptions{bookNotFound, bookNotAvailable, bookTitleAlreadyExists, bookISBNAlreadyExists, userAlreadyExists};
+	enum class LibExceptions{bookNotFound, bookNotAvailable, bookTitleAlreadyExists, bookISBNAlreadyExists, bookAlreadyBought, userAlreadyExists};
 	LibOrganizer(std::function<void(Book)> buyBookFunction = defaultBuyBookFunction);
 
 	Book& findBookPerTitle(const std::string& title);
@@ -18,8 +19,8 @@ public:
 	void returnBook(std::string userName, std::string bookTitle);
 	void returnBook(User& user, Book& book);
 	void removeBook(Book book);
-	void requestBook(std::string BookName);
-	void requestBook(Book book);
+	void requestBook(std::string BookTitle, std::string author, std::string ISBN);
+	void requestBook(Book& book);
 	User& addUser(std::string name);
 private:
 	Book& addBook(std::string title, std::string author, std::string ISBN, Book::BookStatus status);

@@ -7,7 +7,7 @@ class User;
 class Book
 {
 public:
-	enum class BookException { notAvailable};
+	enum class BookException { notAvailable, notInRequest};
 	enum class BookStatus { available, borrowed, inRequest};
 	Book(std::string title, std::string author, std::string ISBN, BookStatus status);
 	Book() = default;
@@ -18,10 +18,17 @@ public:
 	int returnBook();
 	bool operator<(const Book& rhs) const;
 	bool operator ==(const Book& rhs) const;
+	void buyFromWaitingList();
 	std::string toString();
+	User* getUser();
+	std::string getTitle() const;
+	std::string getISBN() const;
+	BookStatus getStatus() const;
+	int request();
 
 private:
 	int numOfUses;
+	int numOfRequests;
 	std::string title;
 	std::string author;
 	std::string ISBN;
