@@ -5,7 +5,7 @@ void LibOrganizer::defaultBuyBookFunction(Book book)
 	std::cout << "please buy the following book " + book.toString() << std::endl;
 }
 
-LibOrganizer::LibOrganizer(std::function<void(Book)> buyBookFunction) : buyBookFunction(buyBookFunction)
+LibOrganizer::LibOrganizer(std::function<void(Book)> buyBookCallback) : buyBookCallback(buyBookCallback)
 {
 }
 
@@ -49,6 +49,13 @@ Book& LibOrganizer::findBookPerISBN(const std::string& ISBN)
 	if(!booksISBNIndex.count(ISBN))
 		throw LibExceptions::bookNotFound;
 	return booksISBNIndex[ISBN];
+}
+
+User& LibOrganizer::findUserPerName(const std::string& userName)
+{
+    if(!userNameIndex.count(userName))
+        throw LibExceptions::userNotFound;
+    return userNameIndex[userName];
 }
 
 void LibOrganizer::borrowBook(std::string userName, std::string bookTitle)
@@ -98,6 +105,7 @@ void LibOrganizer::returnBook(std::string userName, std::string bookTitle)
 	if(numOfBorrows > MAX_BORROW)
 	{
         removeBook(book);
+        buyBookCallback(book);
 	}
 }
 
@@ -149,7 +157,7 @@ void LibOrganizer::requestBook(std::string bookTitle, std::string author, std::s
 			{
 				if(bookWithSameISBN.request()>=MAX_REQ)
 				{
-					buyBookFunction(bookWithSameISBN);
+					buyBookCallback(bookWithSameISBN);
 					return;
 				}
 			}

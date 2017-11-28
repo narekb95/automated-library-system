@@ -23,6 +23,7 @@ public:
 	User* getUser();
 	std::string getTitle() const;
 	std::string getISBN() const;
+    std::string getAuthor() const;
 	BookStatus getStatus() const;
 	int request();
 

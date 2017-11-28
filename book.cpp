@@ -78,6 +78,11 @@ std::string Book::getISBN() const
 	return this->ISBN;
 }
 
+std::string Book::getAuthor() const
+{
+    return this->author;
+}
+
 void Book::buyFromWaitingList()
 {
 	if(this->status != BookStatus::inRequest)
