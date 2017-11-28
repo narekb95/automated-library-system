@@ -71,17 +71,17 @@ It has also the following functions:
    It has the following functions:
 <ul>
    <li><a href="#userBorrowFunc">borrowBook</a></li>
-   <li><a href="#userReturnFunc">retrnBook</a></li>
+   <li><a href="#userReturnFunc">returnBook</a></li>
    <li><a href="#userGetName">getName</a></li>
    <li><a href="#userTostring">toString</a></li>
 </ul>
-<h3 id="userBorrowFunc">void borrowBook(Book& book)</h3>
+<h3 id="userBorrowFunc">- void borrowBook(Book& book)</h3>
    <p>add the borrowed book to the list of borrowed books of the user(a list of 10 books</p>
-<h3 id="userReturnFunc">void returnBook(Book& book)</h3>
+<h3 id="userReturnFunc">- void returnBook(Book& book)</h3>
    <p>remove the book from the list of borrowed books of the user</p>
-<h3 id="userGetName">std::string getName()</h3>
+<h3 id="userGetName">- std::string getName()</h3>
    <p>return name of the user</p>
-<h3 id="userTostring">std::string toString()</h3>
+<h3 id="userTostring">- std::string toString()</h3>
    <p>return user data as a string</p>
    
 </div>
@@ -104,41 +104,41 @@ It has also the following functions:
 </ul>
    It offers the following functions:
 <ul>
-   <li>constructor</li>
-   <li>request</li>
-   <li>isAvailable</li>
-   <li>borrow</li>
-   <li>returnBook</li>
-   <li>buyFromWaitingList</li>
-   <li>toString</li>
-   <li>getUser</li>
-   <li>getTitle</li>
-   <li>getISBN</li>
-   <li>getAuthor</li>
-   <li>getStatus</li>
+   <li><a href="#bookConstructor">constructor</a></li>
+   <li><a href="#bookRequestFunc">request</a></li>
+   <li><a href="#bookIsAvailable">isAvailable</a></li>
+   <li><a href="#bookBorrowFunc">borrow</a></li>
+   <li><a href="#bookReturnFunc">returnBook</a></li>
+   <li><a href="#bookBuyFromWaitingList">buyFromWaitingList</a></li>
+   <li><a href="#bookToString">toString</a></li>
+   <li><a href="#bookGetUser">getUser</a></li>
+   <li><a href="#bookGetTitle">getTitle</a></li>
+   <li><a href="#bookGetISBN">getISBN</a></li>
+   <li><a href="#bookGetAuthor">getAuthor</a></li>
+   <li><a href="#bookGetStatus">getStatus</a></li>
 </ul>
-<h3>- Book(std::string title, std::string author, std::string ISBN, BookStatus status)</h3>
+<h3 id="bookConstructor">- Book(std::string title, std::string author, std::string ISBN, BookStatus status)</h3>
    <p>creates a new book with given parameters.</p>
-<h3>- int request(User* user)</h3>
+<h3 id="bookRequestFunc">- int request(User* user)</h3>
    <p>increases request counter if user hasn't already requested and returns the new val.</p>
-<h3>- bool isAvailable()</h3>
+<h3 id="bookIsAvailable">- bool isAvailable()</h3>
    <p>return true if book status is available (already bought and not borrowed).</p>
-<h3>- void borrow(User* user)</h3>
+<h3 id="bookBorrowFunc">- void borrow(User* user)</h3>
    <p>change book status to borrowed and saved the borrowing user.</p>
-<h3>- int returnBook()</h3>
+<h3 id="bookReturnFunc">- int returnBook()</h3>
    <p>change book status to available.</p>
-<h3>- void buyFromWaitingList()</h3>
+<h3 id="bookBuyFromWaitingList">- void buyFromWaitingList()</h3>
    <p>change book status from requested to availalbe</p>
-<h3>- std::string toString()</h3>
+<h3 id="bookToString">- std::string toString()</h3>
    <p>return book data as a string</p>
-<h3>- User* getUser()</h3>
+<h3 id="bookGetUser">- User* getUser()</h3>
    <p>shows the book borrower or throws exception if not borrowed</p>
-<h3>- std::string getTitle()</h3>
+<h3 id="bookGetTitle">- std::string getTitle()</h3>
    <p>returns book title</p>
-<h3>- std::string getISBN()</h3>
+<h3 id="bookGetISBN">- std::string getISBN()</h3>
    <p>returns book isbn</p>
-<h3>- std::string getAuthor()</h3>
+<h3 id="bookGetAuthor">- std::string getAuthor()</h3>
    <p>returns book author</p>
-<h3>- BookStatus getStatus()</h3>
+<h3 id="bookGetStatus">- BookStatus getStatus()</h3>
    <p>return book status of data Type Book::Status</p>
 </div>
