@@ -97,12 +97,22 @@ void LibOrganizer::returnBook(std::string userName, std::string bookTitle)
 	int numOfBorrows = book.returnBook();
 	if(numOfBorrows > MAX_BORROW)
 	{
-		std::string title = book.getTitle();
-		auto ISBNIterator = booksTitleIndex[title];
-		auto titleIterator = booksTitleIndex.find(title);
-		booksTitleIndex.erase(titleIterator);
-		booksISBNIndex.erase(ISBNIterator);
+        removeBook(book);
 	}
+}
+
+void LibOrganizer::removeBook(Book& book)
+{
+    std::string title = book.getTitle();
+    if(!booksTitleIndex.count(title))
+    {
+        throw LibExceptions::bookNotFound;
+    }
+    auto ISBNIterator = booksTitleIndex[title];
+    auto titleIterator = booksTitleIndex.find(title);
+    booksTitleIndex.erase(titleIterator);
+    booksISBNIndex.erase(ISBNIterator);
+    return;
 }
 
 Book& LibOrganizer::buyBook(std::string title, std::string author,std::string ISBN)

@@ -7,11 +7,11 @@ class User;
 class Book
 {
 public:
-	enum class BookException { notAvailable, notInRequest};
+	enum class BookException { notAvailable, notInRequest, hasBeenRequestedFromThisUser};
 	enum class BookStatus { available, borrowed, inRequest};
 	Book(std::string title, std::string author, std::string ISBN, BookStatus status);
 	Book() = default;
-	void request(std::string user);
+	void request(User* user);
 	std::string getTitle();
 	bool isAvailable();
 	void borrow(User* user);
