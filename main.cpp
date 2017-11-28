@@ -21,6 +21,11 @@ int main(){
 		}
 		catch(LibOrganizer::LibExceptions e)
 		{
+			if(e == LibOrganizer::LibExceptions::bookNotFound)
+			{
+				cout << "book doesn't exist\n";
+				lib1.buyBook("1985", "george...", "987654321");
+			}
 		}
 	}
 	User& haik = lib1.findUserPerName("haik");
