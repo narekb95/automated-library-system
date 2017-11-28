@@ -63,3 +63,8 @@ std::string User::toString()
 	}
 	return s;
 }
+
+std::string User::getName()
+{
+    return this->name;
+}

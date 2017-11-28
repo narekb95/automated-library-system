@@ -11,7 +11,7 @@ int main(){
 	cout << me.toString() << endl;
 	cout << "___________________________\n";
 	cout << intro.toString() << endl;
-	cout << "is owned by:\n" << intro.getUser()->toString() << endl;
+	cout << "is borrowed by: " << intro.getUser()->getName() << endl;
 	for(int i = 0; i < 55; i++){
 		cout << i << endl;
 		try

@@ -15,23 +15,24 @@ public:
 
 	Book& findBookPerTitle(const std::string& title);
 	Book& findBookPerISBN(const std::string& ISBN);
-    User& findUserPerName(const std::string& userName);
+    	User& findUserPerName(const std::string& userName);
 	Book& buyBook(std::string title, std::string author, std::string ISBN);
     
 	void borrowBook(std::string userName, std::string bookTitle);
 	void returnBook(std::string userName, std::string bookTitle);
 	void requestBook(std::string BookTitle, std::string author, std::string ISBN);
-	void requestBook(Book& book);
 	User& addUser(std::string name);
     
 private:
+    static void defaultBuyBookFunction(Book book);
+    
     std::function<void(Book)> buyBookCallback;
     std::map<std::string, Book> booksISBNIndex;
     std::map<std::string, User> userNameIndex;
     std::map<std::string, std::map<std::string, Book>::iterator> booksTitleIndex;
     
 	Book& addBook(std::string title, std::string author, std::string ISBN, Book::BookStatus status);
-	static void defaultBuyBookFunction(Book book);
+    void requestBook(Book& book);
     void removeBook(Book& book);
     void borrowBook(User& user, Book& book);
 
