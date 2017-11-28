@@ -18,6 +18,6 @@ book.o: book.cpp book.h
 	$(GXX) $(GXXFLAGS) -c book.cpp
 
 clean:
-	$(RM) *.o *~
+	$(RM) *.o *~ $(TARGET)
 
 

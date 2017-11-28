@@ -20,7 +20,7 @@ public:
     
 	void borrowBook(std::string userName, std::string bookTitle);
 	void returnBook(std::string userName, std::string bookTitle);
-	void requestBook(std::string BookTitle, std::string author, std::string ISBN);
+    void requestBook(std::string userName, std::string BookTitle, std::string author, std::string ISBN);
 	User& addUser(std::string name);
     
 private:

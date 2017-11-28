@@ -145,9 +145,10 @@ Book& LibOrganizer::buyBook(std::string title, std::string author,std::string IS
 	return booksISBNIndex[ISBN];
 }
 
-void LibOrganizer::requestBook(std::string bookTitle, std::string author, std::string ISBN)
+void LibOrganizer::requestBook(std::string userName, std::string bookTitle, std::string author, std::string ISBN)
 {
 	Book newBook(bookTitle, author, ISBN, Book::BookStatus::inRequest);
+    User& user = findUserPerName(userName);
 	if(booksISBNIndex.count(ISBN))
 	{
 		Book& bookWithSameISBN = booksISBNIndex[ISBN];
@@ -155,7 +156,7 @@ void LibOrganizer::requestBook(std::string bookTitle, std::string author, std::s
 		{
 			if(bookWithSameISBN.getStatus() == Book::BookStatus::inRequest)
 			{
-				if(bookWithSameISBN.request()>=MAX_REQ)
+				if(bookWithSameISBN.request(&user)>=MAX_REQ)
 				{
 					buyBookCallback(bookWithSameISBN);
 					return;

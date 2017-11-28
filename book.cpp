@@ -10,18 +10,6 @@ Book::Book(std::string title, std::string author, std::string ISBN, BookStatus s
 }
 
 //todo: add user to requesting list and not accept two from the same user
-void Book::request(User* user)
-{
-    if(requestMaker.count(user))
-        throw BookException::hasBeenRequestedFromThisUser;
-    requestMaker[user] = true;
-	this->numberOfRequests++;
-}
-
-std::string Book::getTitle()
-{
-	return this->title;
-}
 
 bool Book::isAvailable()
 {
@@ -95,11 +83,11 @@ Book::BookStatus Book::getStatus() const
 	return this->status;
 }
 
-int Book::request()
+int Book::request(User* user)
 {
-	if(status != BookStatus::inRequest)
-	{
-		throw BookException::notInRequest;
-	}
-	return ++numOfRequests;
+    if(requestMaker.count(user))
+        throw BookException::hasBeenRequestedFromThisUser;
+    requestMaker[user] = true;
+    this->numberOfRequests++;
+    return this->numberOfRequests;
 }
