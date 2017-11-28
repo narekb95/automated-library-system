@@ -47,7 +47,11 @@ Is the main part of the library. Organizes people and books in an efficient way.
 <h3>- User& findUserPerName(const std::string& userName)</h3>
    <p>returns the user with corresponding name from the repo.</p>
 </div>
+<br>
+<div>
 <h2>User:</h2>
+</div>
+<br/>
 <div>
 <h2>Book:</h2>
    Book class represent a book with a titile, author, ISBN and a potential borrower. It offers following functions:
