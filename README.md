@@ -145,3 +145,11 @@ It has also the following functions:
 <h3 id="bookGetStatus">- BookStatus getStatus()</h3>
    <p>return book status of data Type Book::Status</p>
 </div>
+
+
+______________________________________________________________________________
+P.S.
+1. callback functions is called once a book is requested. You can buy the book automatically in the function as in the example-3.
+2. You can use makefile to build the project writing the command "make".
+3. All actions happen in O(log(N)) time-complexity and O(N) place-complexity where N is the number of exisiting elemenst(users, books..).
+4. In user class books array has at most a constant of 10 elements that's why adding in linear time doesn't yield a bigger complexity.
