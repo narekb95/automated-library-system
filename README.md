@@ -2,7 +2,7 @@
 An automated library system for users and books.
 Main classes are:
 <ul>
-   <li><a href="#libclass">LibOrganizer</a></li>
+   <li><a href="#libClass">LibOrganizer</a></li>
    <li><a href="#userclass">User</a></li>
    <li><a href="#bookclass">Book</a></li>
 </ul>
