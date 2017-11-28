@@ -90,15 +90,19 @@ void LibOrganizer::borrowBook(User& user, Book& book)
 
 void LibOrganizer::returnBook(std::string userName, std::string bookTitle)
 {
+	//todo: exceptions
 	User& user = userNameIndex[userName];
 	Book& book = findBookPerTitle(bookTitle);
-	returnBook(std::ref(user), std::ref(book));
-}
-
-void LibOrganizer::returnBook(User& user, Book& book)
-{
 	user.returnBook(std::ref(book));
-	book.returnBook();
+	int numOfBorrows = book.returnBook();
+	if(numOfBorrows > MAX_BORROW)
+	{
+		std::string title = book.getTitle();
+		auto ISBNIterator = booksTitleIndex[title];
+		auto titleIterator = booksTitleIndex.find(title);
+		booksTitleIndex.erase(titleIterator);
+		booksISBNIndex.erase(ISBNIterator);
+	}
 }
 
 Book& LibOrganizer::buyBook(std::string title, std::string author,std::string ISBN)

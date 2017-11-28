@@ -5,6 +5,7 @@
 #include<functional>
 #include<map>
 const int MAX_REQ = 50;
+const int MAX_BORROW = 50;
 class LibOrganizer
 {
 public:
@@ -17,7 +18,6 @@ public:
 	void borrowBook(std::string userName, std::string bookTitle);
 	void borrowBook(User& user, Book& book);
 	void returnBook(std::string userName, std::string bookTitle);
-	void returnBook(User& user, Book& book);
 	void removeBook(Book book);
 	void requestBook(std::string BookTitle, std::string author, std::string ISBN);
 	void requestBook(Book& book);
