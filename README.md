@@ -2,13 +2,13 @@
 An automated library system for users and books.
 Main classes are:
 <ul>
-<li>LibOrganizer</li>
-<li>User</li>
-<li>Book</li>
+<li href="libclass">LibOrganizer</li>
+<li href="userclass">User</li>
+<li href="bookclass">Book</li>
 </ul>
 <br>
 <div>
-<h2>LibOrganizer:</h2>
+<h2 id="libClass">LibOrganizer:</h2>
 Is the main part of the library. Organizes people and books in an efficient way.
 It has "LibExceptions" enum class and throws one of its values in case of error:
 <ul>
@@ -61,11 +61,11 @@ It has also the following functions:
 </div>
 <br>
 <div>
-<h2>User:</h2>
+<h2 id="userclass">User:</h2>
 </div>
 <br/>
 <div>
-<h2>Book:</h2>
+<h2 id="bookclass">Book:</h2>
    Book class represent a book with a titile, author, ISBN and a potential borrower.
    It has "BookException" enum class and throws on of its values as exceptions:
 <ul>
