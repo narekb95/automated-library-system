@@ -62,13 +62,34 @@ It has also the following functions:
 <br>
 <div>
 <h2 id="userclass">User:</h2>
-   User Class
+   User Class implements a library user. It has the functionality.
+   It has "UserException" enum class and throws one of its values in case of error:
+<ul>
+   <li>reachedMaxNumberOfBooks</li>
+   <li>noSuchBook</li>
+</ul>
+   It has the following functions:
+<ul>
+   <li><a href="#userBorrowFunc">borrowBook</a></li>
+   <li><a href="#userReturnFunc"></a>retrnBook</li>
+   <li><a href="#userGetName"></a>getName</li>
+   <li><a href="#userTostring"></a>toString</li>
+</ul>
+<h3 id="userBorrowFunc">void borrowBook(Book& book)</h3>
+   <p>add the borrowed book to the list of borrowed books of the user(a list of 10 books</p>
+<h3 id="userReturnFunc">void returnBook(Book& book)</h3>
+   <p>remove the book from the list of borrowed books of the user</p>
+<h3 id="userGetName">std::string getName()</h3>
+   <p>return name of the user</p>
+<h3 id="userTostring">std::string toString()</h3>
+   <p>return user data as a string</p>
+   
 </div>
 <br/>
 <div>
 <h2 id="bookclass">Book:</h2>
    Book class represent a book with a titile, author, ISBN and a potential borrower.
-   It has "BookException" enum class and throws on of its values as exceptions:
+   It has "BookException" enum class and throws one of its values as exceptions:
 <ul>
    <li>notAvailable</li>
    <li>notInRequest</li>
