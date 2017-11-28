@@ -71,9 +71,9 @@ It has also the following functions:
    It has the following functions:
 <ul>
    <li><a href="#userBorrowFunc">borrowBook</a></li>
-   <li><a href="#userReturnFunc"></a>retrnBook</li>
-   <li><a href="#userGetName"></a>getName</li>
-   <li><a href="#userTostring"></a>toString</li>
+   <li><a href="#userReturnFunc">retrnBook</a></li>
+   <li><a href="#userGetName">getName</a></li>
+   <li><a href="#userTostring">toString</a></li>
 </ul>
 <h3 id="userBorrowFunc">void borrowBook(Book& book)</h3>
    <p>add the borrowed book to the list of borrowed books of the user(a list of 10 books</p>
