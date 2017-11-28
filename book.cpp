@@ -6,6 +6,7 @@ Book::Book(std::string title, std::string author, std::string ISBN, BookStatus s
 	{
 		numOfRequests == 1;
 	}
+	numOfUses = 0;
 }
 
 //todo: add user to requesting list and not accept two from the same user

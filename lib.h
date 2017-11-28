@@ -8,7 +8,7 @@ const int MAX_REQ = 50;
 class LibOrganizer
 {
 public:
-	enum class LibExceptions{bookNotFound, bookNotAvailable, bookTitleAlreadyExists, bookISBNAlreadyExists, bookAlreadyBought, userAlreadyExists};
+	enum class LibExceptions{bookNotFound, bookNotAvailable, bookTitleAlreadyExists, bookISBNAlreadyExists, bookAlreadyBought, userAlreadyExists, userNotFound};
 	LibOrganizer(std::function<void(Book)> buyBookFunction = defaultBuyBookFunction);
 
 	Book& findBookPerTitle(const std::string& title);

@@ -11,6 +11,7 @@ bool User::operator== (const User& rUsr)
 
 User::User(std::string name) : name(name)
 {
+	numOfBooks = 0;
 	for(int i = 0; i < MAX_BOOKS; i++)
 		borrowedBooks[i] = nullptr;
 }

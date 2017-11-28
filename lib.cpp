@@ -53,6 +53,10 @@ Book& LibOrganizer::findBookPerISBN(const std::string& ISBN)
 
 void LibOrganizer::borrowBook(std::string userName, std::string bookTitle)
 {
+	if(!userNameIndex.count(userName))
+	{
+		throw LibExceptions::userNotFound;
+	}
 	User& user = userNameIndex[userName];
 	Book& book = findBookPerTitle(bookTitle);
 	borrowBook(std::ref(user), std::ref(book));
