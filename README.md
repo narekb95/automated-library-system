@@ -6,9 +6,21 @@ Main classes are:
 <li>User</li>
 <li>Book</li>
 </ul>
+<br>
 <div>
 <h2>LibOrganizer:</h2>
-Is the main part of the library. Organizes people and books in an efficient way. Has the following functions:
+Is the main part of the library. Organizes people and books in an efficient way.
+It has "LibExceptions" enum class and throws one of its values in case of error:
+<ul>
+   <li>bookNotFound</li>
+   <li>bookNotAvailable</li>
+   <li>bookTitleAlreadyExists</li>
+   <li>bookISBNAlreadyExists</li>
+   <li>bookAlreadyBought</li>
+   <li>userAlreadyExists</li>
+   <li>userNotFound</li>
+</ul>   
+It has also the following functions:
 <ul>
    <li>constuctor</li>
    <li>borrowBook</li>
