@@ -50,4 +50,19 @@ Is the main part of the library. Organizes people and books in an efficient way.
 <h2>User:</h2>
 <div>
 <h2>Book:</h2>
+   Book class represent a book with a titile, author, ISBN and a potential borrower. It offers following functions:
+<ul>
+   <li>request</li>
+   <li>isAvailable</li>
+   <li>borrow</li>
+   <li>returnBook</li>
+   <li>buyFromWaitingList</li>
+   <li>returnBook</li>
+   <li>toString</li>
+   <li>getUser</li>
+   <li>getTitle</li>
+   <li>getISBN</li>
+   <li>getAuthor</li>
+   <li>getStatus</li>
+</ul>
 </div>
