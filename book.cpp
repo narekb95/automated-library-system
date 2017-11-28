@@ -53,6 +53,10 @@ std::string Book::toString()
 
 User* Book::getUser()
 {
+    if(status !=  BookStatus::borrowed)
+    {
+        throw BookException::notBorrowed;
+    }
 	return this->user;
 }
 

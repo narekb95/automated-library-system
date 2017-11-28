@@ -7,7 +7,7 @@ class User;
 class Book
 {
 public:
-	enum class BookException { notAvailable, notInRequest, hasBeenRequestedFromThisUser};
+	enum class BookException { notAvailable, notInRequest, notBorrowed, hasBeenRequestedFromThisUser};
 	enum class BookStatus { available, borrowed, inRequest};
     
 	Book(std::string title, std::string author, std::string ISBN, BookStatus status);
