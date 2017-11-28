@@ -54,14 +54,28 @@ Is the main part of the library. Organizes people and books in an efficient way.
 <br/>
 <div>
 <h2>Book:</h2>
-   Book class represent a book with a titile, author, ISBN and a potential borrower. It offers following functions:
+   Book class represent a book with a titile, author, ISBN and a potential borrower.
+   It has "BookException" enum class and throws on of its values as exceptions:
 <ul>
+   <li>notAvailable</li>
+   <li>notInRequest</li>
+   <li>notBorrowed</li>
+   <li>hasBeenRequestedFromThisUser</li>
+</ul>
+   It has also "BookStatus" enum class which has the following potential values:
+<ul>
+   <li>available</li>
+   <li>borrowed</li>
+   <li>inRequest</li>
+</ul>
+   It offers the following functions:
+<ul>
+   <li>constructor</li>
    <li>request</li>
    <li>isAvailable</li>
    <li>borrow</li>
    <li>returnBook</li>
    <li>buyFromWaitingList</li>
-   <li>returnBook</li>
    <li>toString</li>
    <li>getUser</li>
    <li>getTitle</li>
@@ -69,4 +83,28 @@ Is the main part of the library. Organizes people and books in an efficient way.
    <li>getAuthor</li>
    <li>getStatus</li>
 </ul>
+<h3>Book(std::string title, std::string author, std::string ISBN, BookStatus status)</h3>
+   <p>creates a new book with given parameters.</p>
+<h3>int request(User* user)</h3>
+   <p>increases request counter if user hasn't already requested and returns the new val.</p>
+<h3>bool isAvailable()</h3>
+   <p>return true if book status is available (already bought and not borrowed).</p>
+<h3>void borrow(User* user)</h3>
+   <p>change book status to borrowed and saved the borrowing user.</p>
+<h3>int returnBook()</h3>
+   <p>change book status to available.</p>
+<h3>void buyFromWaitingList()</h3>
+   <p>change book status from requested to availalbe</p>
+<h3>std::string toString()</h3>
+   <p>return book data as a string</p>
+<h3>User* getUser()</h3>
+   <p>shows the book borrower or throws exception if not borrowed</p>
+<h3>std::string getTitle()</h3>
+   <p>returns book title</p>
+<h3>std::string getISBN()</h3>
+   <p>returns book isbn</p>
+<h3>std::string getAuthor()</h3>
+   <p>returns book author</p>
+<h3>BookStatus getStatus()</h3>
+   <p>return book status of data Type Book::Status</p>
 </div>
